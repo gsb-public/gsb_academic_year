@@ -1,0 +1,4 @@
+name = GSB Academic Year
+description = Provides functionality to control the Academic Year.
+core = 7.x
+package = GSB
