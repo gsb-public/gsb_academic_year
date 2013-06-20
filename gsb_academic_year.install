@@ -1,0 +1,13 @@
+<?php
+
+/**
+ * @file
+ * Install, update and uninstall functions for the GSB Academic Year module.
+ */
+
+/**
+ * Implements hook_uninstall().
+ */
+function gsb_academic_year_uninstall() {
+  variable_del('gsb_academic_year');
+}

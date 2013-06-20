@@ -1,0 +1,93 @@
+<?php
+
+/**
+ * @file
+ * Contains hook implementations and helper functions for GSB Academic Year.
+ */
+
+/**
+ * Implements hook_menu().
+ */
+function gsb_academic_year_menu() {
+  $items = array();
+  $items['admin/config/gsb'] = array(
+    'title' => 'GSB',
+    'description' => 'Site-specific configuration.',
+    'position' => 'left',
+    'page callback' => 'system_admin_menu_block_page',
+    'access arguments' => array('access administration pages'),
+    'file' => 'system.admin.inc',
+    'file path' => drupal_get_path('module', 'system'),
+  );
+  $items['admin/config/gsb/academic-year'] = array(
+    'title' => 'Academic year',
+    'description' => 'Manage the current academic year',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('gsb_academic_year_settings_form'),
+    'access arguments' => array('access administration pages'),
+    'file' => 'gsb_academic_year.admin.inc',
+  );
+  return $items;
+}
+
+/**
+ * Gets the current academic year value.
+ *
+ * @return int
+ *   The current academic year as an integer.
+ */
+function gsb_academic_year_get_value() {
+  return (int) variable_get('gsb_academic_year', date('Y'));
+}
+
+/**
+ * Gets the current academic year label.
+ *
+ * @return string
+ *   The human-readable current academic year.
+ */
+function gsb_academic_year_get_label() {
+  return _gsb_academic_year_to_label(gsb_academic_year_get_value());
+}
+
+/**
+ * Gets the allowed academic years.
+ *
+ * @param string $year
+ *   If no year is specified, the current year will be used.
+ *
+ * @return int[]
+ *   An associative array of academic years with matching keys and values.
+ */
+function gsb_academic_year_get_allowed_values($year = '') {
+  // Either ensure the year is an integer, or load the current year.
+  $year = $year ? (int) $year : gsb_academic_year_get_value();
+  return drupal_map_assoc(range($year - 1, $year + 1));
+}
+
+/**
+ * Gets the allowed academic year labels.
+ *
+ * @param string $year
+ *   If no year is specified, the current year will be used.
+ *
+ * @return string[]
+ *   An associative array of academic years, containing the human-readable
+ *   labels keyed by the year value.
+ */
+function gsb_academic_year_get_allowed_labels($year = '') {
+  return array_map('_gsb_academic_year_to_label', gsb_academic_year_get_allowed_values($year));
+}
+
+/**
+ * Returns the human-readable version of an academic year.
+ *
+ * @param int $year
+ *   The academic year value.
+ *
+ * @return string
+ *   The human-readable academic year.
+ */
+function _gsb_academic_year_to_label($year) {
+  return 'AY-' . $year;
+}
