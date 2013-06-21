@@ -2,3 +2,4 @@ name = GSB Academic Year
 description = Provides functionality to control the Academic Year.
 core = 7.x
 package = GSB
+files[] = views/gsb_academic_year_handler_area_navigation.inc

@@ -31,6 +31,16 @@ function gsb_academic_year_menu() {
 }
 
 /**
+ * Implements hook_views_api().
+ */
+function gsb_academic_year_views_api() {
+  return array(
+    'api' => 3,
+    'path' => drupal_get_path('module', 'gsb_academic_year') . '/views',
+  );
+}
+
+/**
  * Gets the current academic year value.
  *
  * @return int
