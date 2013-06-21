@@ -31,6 +31,11 @@ class gsb_academic_year_handler_area_navigation extends views_handler_area {
         '#type' => 'link',
         '#title' => t('Previous Academic Year'),
         '#href' => $path . '/' . $values[$key - 1],
+        '#attributes' => array(
+          'class' => array(
+            'prev',
+          ),
+        ),
       );
     }
     if ($key < 2) {
@@ -38,6 +43,11 @@ class gsb_academic_year_handler_area_navigation extends views_handler_area {
         '#type' => 'link',
         '#title' => t('Next Academic Year'),
         '#href' => $path . '/' . $values[$key + 1],
+        '#attributes' => array(
+          'class' => array(
+            'next',
+          ),
+        ),
       );
     }
     return drupal_render($build);
