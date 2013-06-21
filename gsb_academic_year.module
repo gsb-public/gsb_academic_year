@@ -78,15 +78,12 @@ function gsb_academic_year_get_allowed_values($year = '') {
 /**
  * Gets the allowed academic year labels.
  *
- * @param string $year
- *   If no year is specified, the current year will be used.
- *
  * @return string[]
  *   An associative array of academic years, containing the human-readable
  *   labels keyed by the year value.
  */
-function gsb_academic_year_get_allowed_labels($year = '') {
-  return array_map('_gsb_academic_year_to_label', gsb_academic_year_get_allowed_values($year));
+function gsb_academic_year_get_allowed_labels() {
+  return array_map('_gsb_academic_year_to_label', gsb_academic_year_get_allowed_values());
 }
 
 /**
