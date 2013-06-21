@@ -29,14 +29,14 @@ class gsb_academic_year_handler_area_navigation extends views_handler_area {
     if ($key > 0) {
       $build['prev'] = array(
         '#type' => 'link',
-        '#title' => t('Previous'),
+        '#title' => t('Previous Academic Year'),
         '#href' => $path . '/' . $values[$key - 1],
       );
     }
     if ($key < 2) {
       $build['next'] = array(
         '#type' => 'link',
-        '#title' => t('Next'),
+        '#title' => t('Next Academic Year'),
         '#href' => $path . '/' . $values[$key + 1],
       );
     }
