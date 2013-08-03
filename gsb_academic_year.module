@@ -96,5 +96,6 @@ function gsb_academic_year_get_allowed_labels() {
  *   The human-readable academic year.
  */
 function _gsb_academic_year_to_label($year) {
-  return 'AY-' . $year;
+  $year_past = $year - 1;
+  return 'AY ' . $year_past . '-' . substr($year, -2);;
 }
